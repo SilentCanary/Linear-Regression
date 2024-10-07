@@ -34,10 +34,10 @@ vector<string> parse_csv_line(const string &line)
         {
             inside_quotes = !inside_quotes;
         }
-        else if (ch == delimiter && !inside_quotes)
+        else if (ch == delimiter && !inside_quotes)  //when you reach delimiter meaning one field is complete then you push it in result
         {
-            result.push_back(field);
-            field.clear();
+            result.push_back(field);   
+            field.clear(); 
         }
         else
         {
@@ -75,12 +75,6 @@ vector<song> read_csv(const string &file_name)
         catch (const invalid_argument &e)
         {
             cerr << "Invalid argument encountered: " << e.what() << endl;
-            cerr << "Line content: " << line << endl;
-        }
-        catch (const out_of_range &e)
-        {
-            cerr << "Out of range error: " << e.what() << endl;
-            cerr << "Line content: " << line << endl;
         }
     }
     file.close();
@@ -151,8 +145,8 @@ public:
             double new_cost = cost_function(songs);
             if(i%100==0)
             {
-             cout << "Iteration " << i << ", Cost = " << new_cost << endl;
-                cout << "Theta values: ";
+             cout<<"Iteration : "<<i<<"  Cost = " << new_cost << endl;
+                cout<<"Theta values: ";
                 for (double theta_val : thetha)
                 {
                     cout << theta_val << " ";
